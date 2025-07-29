@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delta Studios - A Ordem</title>
+    <!-- Google Fonts: Anton & Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icones para Player de Musica -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /* Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navegação */
+        nav {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333333;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 75px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+
+        .logo .delta {
+            color: #B51B24;
+        }
+
+        .logo .studios {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #B51B24;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Seção Home */
+        #home {
+            height: 100vh;
+            padding-top: 75px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: #000000;
+            overflow: hidden;
+        }
+
+        .home-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1535016120720-40c646be5580?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .home-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(181, 27, 36, 0.7) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: 2;
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .home-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .title-svg-container {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .title-svg-container img {
+            width: 100%; 
+            height: auto; 
+            filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.8));
+        }
+
+        .home-description {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            max-width: 500px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .home-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.8rem 1.8rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid #ffffff;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        .home-info {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-family: 'Anton', sans-serif;
+            font-size: 0.9rem;
+            color: #B51B24;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .info-value {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Seções de Conteúdo */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #333333;
+        }
+
+        .content-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            color: #B51B24;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            max-width: 800px;
+        }
+
+        /* Ficha Técnica */
+        .credits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .credit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #333333;
+        }
+
+        .credit-role {
+            font-weight: 700;
+            color: #B51B24;
+            margin-right: 1rem;
+        }
+
+        .credit-name {
+            color: #e0e0e0;
+            text-align: right;
+        }
+
+        /* Galeria de Bastidores */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Trilha Sonora */
+        .soundtrack-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 992px) {
+            .soundtrack-wrapper {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+        .tracklist {
+            list-style: none;
+        }
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid #222;
+            transition: background-color 0.3s ease;
+        }
+        .track-item:hover {
+            background-color: #111;
+        }
+        .track-number {
+            color: #B51B24;
+            font-weight: 700;
+            font-family: 'Anton', sans-serif;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+        }
+        .track-info {
+            flex-grow: 1;
+        }
+        .track-title {
+            font-weight: 600;
+            color: #fff;
+        }
+        .track-artist {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        .embed-placeholder {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: #111;
+            border: 2px dashed #B51B24;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #B51B24;
+            padding: 1rem;
+        }
+        .embed-placeholder .fa-spotify {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Seção Assistir */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 2rem auto 0;
+            aspect-ratio: 16/9;
+            background: #111;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #B51B24;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #B51B24;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .video-placeholder:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+            background: rgba(181, 27, 36, 0.1);
+        }
+
+        .video-placeholder::before {
+            content: '▶';
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Rodapé */
+        footer {
+            background: #000000;
+            border-top: 1px solid #333333;
+            text-align: center;
+            padding: 3rem 0;
+            color: #666666;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal para Video */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #1a1a1a;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid #333;
+        }
+
+        .modal-content h3 {
+            font-family: 'Anton', sans-serif;
+            color: #B51B24;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #222;
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .home-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .home-left {
+                align-items: center;
+            }
+
+            .home-info {
+                order: -1; /* Move o card de info para cima no mobile */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 75px; /* Altura da navbar */
+                left: 0;
+                width: 100%;
+                background: #000000;
+                flex-direction: column;
+                padding: 1rem 0;
+                gap: 0;
+                border-top: 1px solid #333333;
+            }
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links a {
+                padding: 1rem;
+                display: block;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .content-section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Input escondido para upload de imagem -->
+    <input type="file" id="imageUploader" accept="image/*" style="display: none;">
+
+    <!-- Navegação -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="delta">DELTA</span><span class="studios">STUDIOS</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sinopse">Sinopse</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#trilha">Trilha Sonora</a></li>
+                <li><a href="#creditos">Ficha Técnica</a></li>
+                <li><a href="#assistir">Assistir</a></li>
+            </ul>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Home -->
+    <section id="home">
+        <div class="home-background"></div>
+        <div class="home-overlay"></div>
+        <div class="home-content">
+            <div class="home-left">
+                <div class="title-svg-container" id="titleContainer">
+                    <img src="https://placehold.co/400x150/transparent/ffffff?text=A+ORDEM&font=anton" alt="Logo A Ordem">
+                </div>
+                <p class="home-description">
+                    Num futuro controlado por algoritmos, Renata descobre que a harmonia social é apenas uma ilusão. Inspirada pela resistência de seu avô, ela decide usar as armas do próprio sistema para derrubar a nova ditadura digital e reacender a busca pela verdade.
+                </p>
+                <div class="home-buttons">
+                    <a href="#assistir" class="btn-primary">Assistir</a>
+                    <a href="#sinopse" class="btn-secondary">Saiba Mais</a>
+                </div>
+            </div>
+            <div class="home-info">
+                <div class="info-item">
+                    <div class="info-label">Gênero</div>
+                    <div class="info-value">Drama, Thriller</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Estreia</div>
+                    <div class="info-value">29 de Julho 2024</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Direção</div>
+                    <div class="info-value">Talita Amorim</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Produção</div>
+                    <div class="info-value">Delta Studios</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sinopse -->
+    <section id="sinopse" class="content-section">
+        <h2 class="section-title">Sinopse</h2>
+        <div class="section-content">
+            <p>
+                Num futuro controlado por algoritmos, Renata descobre que a harmonia social é apenas uma ilusão. Inspirada pela resistência de seu avô, ela decide usar as armas do próprio sistema para derrubar a nova ditadura digital e reacender a busca pela verdade.
+            </p>
+        </div>
+    </section>
+
+    <!-- Galeria de Bastidores -->
+    <section id="galeria" class="content-section">
+        <h2 class="section-title">Galeria de Bastidores</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://placehold.co/600x400/111/fff?text=Bastidores+1" alt="Foto dos bastidores 1"></div>
+            <div class="gallery-item"><img src="https://placehold.co/600x400/222/fff?text=Bastidores+2" alt="Foto dos bastidores 2"></div>
+            <div class="gallery-item"><img src="https://placehold.co/600x400/111/fff?text=Bastidores+3" alt="Foto dos bastidores 3"></div>
+            <div class="gallery-item"><img src="https://placehold.co/600x400/222/fff?text=Bastidores+4" alt="Foto dos bastidores 4"></div>
+            <div class="gallery-item"><img src="https://placehold.co/600x400/111/fff?text=Bastidores+5" alt="Foto dos bastidores 5"></div>
+            <div class="gallery-item"><img src="https://placehold.co/600x400/222/fff?text=Bastidores+6" alt="Foto dos bastidores 6"></div>
+        </div>
+    </section>
+
+    <!-- Trilha Sonora -->
+    <section id="trilha" class="content-section">
+        <h2 class="section-title">Trilha Sonora</h2>
+        <div class="soundtrack-wrapper">
+            <div class="embed-placeholder">
+                <i class="fa-brands fa-spotify"></i>
+                <span>Incorpore sua playlist do Spotify/Soundcloud aqui</span>
+            </div>
+            <ul class="tracklist">
+                <li class="track-item">
+                    <span class="track-number">01</span>
+                    <div class="track-info">
+                        <div class="track-title">Título da Música 1</div>
+                        <div class="track-artist">Nome do Artista</div>
+                    </div>
+                </li>
+                <li class="track-item">
+                    <span class="track-number">02</span>
+                    <div class="track-info">
+                        <div class="track-title">Título da Música 2</div>
+                        <div class="track-artist">Nome do Artista</div>
+                    </div>
+                </li>
+                <li class="track-item">
+                    <span class="track-number">03</span>
+                    <div class="track-info">
+                        <div class="track-title">Título da Música 3</div>
+                        <div class="track-artist">Nome do Artista</div>
+                    </div>
+                </li>
+                 <li class="track-item">
+                    <span class="track-number">04</span>
+                    <div class="track-info">
+                        <div class="track-title">Título da Música 4</div>
+                        <div class="track-artist">Nome do Artista</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Ficha Técnica -->
+    <section id="creditos" class="content-section">
+        <h2 class="section-title">Ficha Técnica</h2>
+        <div class="credits-list">
+            <div class="credit-item"><span class="credit-role">Direção:</span><span class="credit-name">Talita Amorim</span></div>
+            <div class="credit-item"><span class="credit-role">Roteiro:</span><span class="credit-name">Silvaney Santos, Matheus Euzébio, Ana Carolina Cunha e Ronyel Borges</span></div>
+            <div class="credit-item"><span class="credit-role">Produção:</span><span class="credit-name">Ronyel Borges</span></div>
+            <div class="credit-item"><span class="credit-role">Direção de Fotografia:</span><span class="credit-name">Ana Carolina Cunha</span></div>
+            <div class="credit-item"><span class="credit-role">Edição:</span><span class="credit-name">Talita Amorim e Ronyel Borges</span></div>
+            <div class="credit-item"><span class="credit-role">Desenvolvedores do Site:</span><span class="credit-name">Ana Luiza Santos e João Pedro Gomes</span></div>
+            <div class="credit-item"><span class="credit-role">Elenco Principal:</span><span class="credit-name">Ana Carolina Cunha, Ana Luiza Santos, João Pedro Gomes, Matheus Euzébio, Ronyel Borges, Silvaney Santos e Talita Amorim</span></div>
+            <div class="credit-item"><span class="credit-role">Produtora:</span><span class="credit-name">Delta Studios</span></div>
+        </div>
+    </section>
+
+    <!-- Assistir ao Curta -->
+    <section id="assistir" class="content-section">
+        <h2 class="section-title" style="text-align: center;">Assistir ao Curta</h2>
+        <div class="video-wrapper" id="videoWrapper">
+            <div class="video-placeholder">
+                <div>Clique para adicionar o vídeo do YouTube</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DeltaStudios - Todos os direitos reservados</p>
+            <p>Curta-metragem "A Ordem" - Uma produção original</p>
+        </div>
+    </footer>
+    
+    <!-- Modal para adicionar vídeo -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content">
+            <h3>Adicionar Vídeo do YouTube</h3>
+            <input type="text" id="videoUrlInput" placeholder="Cole o link de incorporação do YouTube aqui">
+            <div class="modal-buttons">
+                <button id="cancelVideoBtn" class="btn-secondary">Cancelar</button>
+                <button id="saveVideoBtn" class="btn-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu móvel
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Lógica do Modal de Vídeo
+            const videoWrapper = document.getElementById('videoWrapper');
+            const videoModal = document.getElementById('videoModal');
+            const videoUrlInput = document.getElementById('videoUrlInput');
+            const saveVideoBtn = document.getElementById('saveVideoBtn');
+            const cancelVideoBtn = document.getElementById('cancelVideoBtn');
+
+            videoWrapper.addEventListener('click', (event) => {
+                // Abre o modal apenas se o placeholder for clicado
+                if (event.currentTarget.querySelector('.video-placeholder')) {
+                    videoModal.style.display = 'flex';
+                }
+            });
+            
+            cancelVideoBtn.addEventListener('click', () => {
+                videoModal.style.display = 'none';
+            });
+
+            saveVideoBtn.addEventListener('click', () => {
+                const url = videoUrlInput.value.trim();
+                if (url && url.includes('youtube.com/embed/')) {
+                    videoWrapper.innerHTML = `<iframe src="${url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    videoModal.style.display = 'none';
+                    videoUrlInput.value = ''; // Limpa o input
+                } else {
+                    // Substituímos o alert por um feedback visual
+                    videoUrlInput.style.border = '1px solid red';
+                    videoUrlInput.placeholder = 'Link inválido. Use o formato de incorporação.';
+                    setTimeout(() => {
+                       videoUrlInput.style.border = '1px solid #444';
+                       videoUrlInput.placeholder = 'Cole o link de incorporação do YouTube aqui';
+                    }, 3000);
+                }
+            });
+            
+            // Lógica para Upload de Imagem do Título
+            const titleContainer = document.getElementById('titleContainer');
+            const imageUploader = document.getElementById('imageUploader');
+            
+            titleContainer.addEventListener('click', () => {
+                imageUploader.click();
+            });
+            
+            imageUploader.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const imgElement = titleContainer.querySelector('img');
+                        if (imgElement) {
+                            imgElement.src = e.target.result;
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -521,6 +521,18 @@
                 width: 100%;
             }
         }
+
+        .tracklist {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr; /* 1 coluna por padrão para celulares */
+    gap: 0 2rem; /* Espaço horizontal entre as colunas */
+}
+@media (min-width: 768px) {
+    .tracklist {
+        grid-template-columns: 1fr 1fr; /* 2 colunas para telas maiores (tablets/desktops) */
+    }
+}
     </style>
 </head>
 <body>
@@ -600,62 +612,62 @@
         <h2 class="section-title">Trilha Sonora</h2>
         <div class="soundtrack-wrapper">
             <div class="playlist-cover">
-                <img src="https://placehold.co/350x350/1DB954/ffffff?text=Capa+da+Playlist" alt="Capa da playlist do Spotify">
+                <img src="/tracinhosplaylist.png" alt="Capa da playlist do Spotify">
             </div>
             <ul class="tracklist">
                 <li class="track-item">
                     <span class="track-number">01</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 1</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">Another Brick In The Wall, Part Two</div>
+                        <div class="track-artist">Pink Floyd</div>
                     </div>
                 </li>
                 <li class="track-item">
                     <span class="track-number">02</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 2</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">Mystic and Severe </div>
+                        <div class="track-artist">Ennio Morricone</div>
                     </div>
                 </li>
                 <li class="track-item">
                     <span class="track-number">03</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 3</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">The Devil's Rumble</div>
+                        <div class="track-artist">Davie Allan & The Arrows</div>
                     </div>
                 </li>
                  <li class="track-item">
                     <span class="track-number">04</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 4</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">Imagine Dragons feat. JID - Enemy (Karaoke Version)</div>
+                        <div class="track-artist">Urock Karaoke</div>
                     </div>
                 </li>
                 <li class="track-item">
                     <span class="track-number">05</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 5</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">Construção</div>
+                        <div class="track-artist">Chico Buarque</div>
                     </div>
                 </li>
                 <li class="track-item">
                     <span class="track-number">06</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 6</div>
-                        <div class="track-artist">Nome do Artista</div>
+                        <div class="track-title">Apesar de Você</div>
+                        <div class="track-artist">Chico Buarque</div>
                     </div>
                 </li>
                 <li class="track-item">
                     <span class="track-number">07</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 7</div>
+                        <div class="track-title">Skyfall</div>
                         <div class="track-artist">Nome do Artista</div>
                     </div>
                 </li>
                  <li class="track-item">
                     <span class="track-number">08</span>
                     <div class="track-info">
-                        <div class="track-title">Título da Música 8</div>
+                        <div class="track-title">Roda-Viva</div>
                         <div class="track-artist">Nome do Artista</div>
                     </div>
                 </li>

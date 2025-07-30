@@ -101,7 +101,7 @@
             transition: 0.3s;
         }
         
-        /* NOVA SEÇÃO HOME */
+        /* SEÇÃO HOME */
         #home {
             height: 100vh;
             padding-top: 75px;
@@ -128,7 +128,7 @@
         .home-text-content {
             display: flex;
             flex-direction: column;
-            gap: 0rem; /* <<< AQUI VOCÊ CONTROLA O ESPAÇO entre a logo, sinopse e botões */
+            gap: 1rem; 
         }
         
         .title-svg-container {
@@ -287,62 +287,70 @@
         }
         
         /* Trilha Sonora */
-.soundtrack-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-top: 2rem;
-    align-items: center;
-}
-@media (min-width: 992px) {
-    .soundtrack-wrapper {
-        grid-template-columns: 350px 1fr;
-    }
-}
-.tracklist {
-    list-style: none;
-}
-.track-item {
-    display: flex;
-    align-items: center;
-    padding: 1rem 0.5rem;
-    border-bottom: 1px solid #222;
-    transition: background-color 0.3s ease;
-}
-.track-item:hover {
-    background-color: #111;
-}
-.track-number {
-    color: #B51B24;
-    font-weight: 700;
-    font-family: 'Anton', sans-serif;
-    margin-right: 1.5rem;
-    font-size: 1.2rem;
-}
-.track-info {
-    flex-grow: 1;
-}
-.track-title {
-    font-weight: 600;
-    color: #fff;
-}
-.track-artist {
-    font-size: 0.9rem;
-    color: #aaa;
-}
-.playlist-cover {
-    width: 100%;
-    max-width: 350px;
-    aspect-ratio: 1/1;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-.playlist-cover img {
-    width: 100%;
-    height: 110%;
-    object-fit: cover;
-}
+        .soundtrack-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: flex-start;
+        }
+        @media (min-width: 992px) {
+            .soundtrack-wrapper {
+                grid-template-columns: 350px 1fr;
+            }
+        }
+        .tracklist {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr; /* 1 coluna por padrão */
+            gap: 0 2rem; /* Espaço entre colunas */
+        }
+        @media (min-width: 768px) {
+            .tracklist {
+                grid-template-columns: 1fr 1fr; /* 2 colunas para telas maiores */
+            }
+        }
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0.5rem;
+            border-bottom: 1px solid #222;
+            transition: background-color 0.3s ease;
+        }
+        .track-item:hover {
+            background-color: #111;
+        }
+        .track-number {
+            color: #B51B24;
+            font-weight: 700;
+            font-family: 'Anton', sans-serif;
+            margin-right: 1.5rem;
+            font-size: 1.2rem;
+        }
+        .track-info {
+            flex-grow: 1;
+        }
+        .track-title {
+            font-weight: 600;
+            color: #fff;
+        }
+        .track-artist {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        .playlist-cover {
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .playlist-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         /* Seção Assistir */
         .video-wrapper {
@@ -357,42 +365,10 @@
             border: 1px solid #333;
         }
 
-        .video-placeholder {
+        .video-wrapper video {
             width: 100%;
             height: 100%;
-            border: 2px dashed #B51B24;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #B51B24;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .video-placeholder:hover {
-            border-color: #ffffff;
-            color: #ffffff;
-            background: rgba(181, 27, 36, 0.1);
-        }
-
-        .video-placeholder::before {
-            content: '▶';
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
+            border-radius: 10px;
         }
 
         /* Rodapé */
@@ -412,51 +388,6 @@
 
         .footer-content p {
             margin-bottom: 0.5rem;
-        }
-
-        /* Modal para Video */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            border: 1px solid #333;
-        }
-
-        .modal-content h3 {
-            font-family: 'Anton', sans-serif;
-            color: #B51B24;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background: #222;
-            color: #fff;
-            margin-bottom: 1.5rem;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 1rem;
         }
 
         /* Responsividade */
@@ -521,18 +452,6 @@
                 width: 100%;
             }
         }
-
-        .tracklist {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr; /* 1 coluna por padrão para celulares */
-    gap: 0 2rem; /* Espaço horizontal entre as colunas */
-}
-@media (min-width: 768px) {
-    .tracklist {
-        grid-template-columns: 1fr 1fr; /* 2 colunas para telas maiores (tablets/desktops) */
-    }
-}
     </style>
 </head>
 <body>
@@ -548,6 +467,7 @@
                 <li><a href="#trilha">Trilha Sonora</a></li>
                 <li><a href="#creditos">Ficha Técnica</a></li>
                 <li><a href="#assistir">Assistir</a></li>
+                <li><a href="#canal">Canal</a></li>
             </ul>
             <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <span></span>
@@ -692,10 +612,25 @@
     <!-- Assistir ao Curta -->
     <section id="assistir" class="content-section">
         <h2 class="section-title" style="text-align: center;">Assistir ao Curta</h2>
-        <div class="video-wrapper" id="videoWrapper">
-            <div class="video-placeholder">
-                <div>Clique para adicionar o vídeo do YouTube</div>
-            </div>
+        <div class="video-wrapper">
+            <video controls preload="auto">
+                <source src="videos/curta.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </div>
+    </section>
+
+    <!-- Canal do YouTube -->
+    <section id="canal" class="content-section">
+        <h2 class="section-title" style="text-align: center;">Nosso Canal no YouTube</h2>
+        <p class="section-content" style="text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 2rem;">
+            Não conseguiu assistir ao vídeo? Acesse nosso canal oficial no YouTube, o curta-metragem também está disponível lá!
+        </p>
+        <div style="text-align: center;">
+            <a href="https://www.youtube.com/@deltaestudio-r1p" target="_blank" class="btn-primary" style="width: auto; padding: 1rem 2rem;">
+                <i class="fa-brands fa-youtube" style="margin-right: 8px;"></i>
+                Visitar Canal
+            </a>
         </div>
     </section>
 
@@ -707,17 +642,6 @@
         </div>
     </footer>
     
-    <!-- Modal para adicionar vídeo -->
-    <div class="modal-overlay" id="videoModal">
-        <div class="modal-content">
-            <h3>Adicionar Vídeo do YouTube</h3>
-            <input type="text" id="videoUrlInput" placeholder="Cole o link de incorporação do YouTube aqui">
-            <div class="modal-buttons">
-                <button id="cancelVideoBtn" class="btn-secondary">Cancelar</button>
-                <button id="saveVideoBtn" class="btn-primary">Salvar</button>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -733,41 +657,6 @@
                 link.addEventListener('click', () => {
                     navLinks.classList.remove('active');
                 });
-            });
-
-            // Lógica do Modal de Vídeo
-            const videoWrapper = document.getElementById('videoWrapper');
-            const videoModal = document.getElementById('videoModal');
-            const videoUrlInput = document.getElementById('videoUrlInput');
-            const saveVideoBtn = document.getElementById('saveVideoBtn');
-            const cancelVideoBtn = document.getElementById('cancelVideoBtn');
-
-            videoWrapper.addEventListener('click', (event) => {
-                // Abre o modal apenas se o placeholder for clicado
-                if (event.currentTarget.querySelector('.video-placeholder')) {
-                    videoModal.style.display = 'flex';
-                }
-            });
-            
-            cancelVideoBtn.addEventListener('click', () => {
-                videoModal.style.display = 'none';
-            });
-
-            saveVideoBtn.addEventListener('click', () => {
-                const url = videoUrlInput.value.trim();
-                if (url && url.includes('youtube.com/embed/')) {
-                    videoWrapper.innerHTML = `<iframe src="${url}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                    videoModal.style.display = 'none';
-                    videoUrlInput.value = ''; // Limpa o input
-                } else {
-                    // Substituímos o alert por um feedback visual
-                    videoUrlInput.style.border = '1px solid red';
-                    videoUrlInput.placeholder = 'Link inválido. Use o formato de incorporação.';
-                    setTimeout(() => {
-                       videoUrlInput.style.border = '1px solid #444';
-                       videoUrlInput.placeholder = 'Cole o link de incorporação do YouTube aqui';
-                    }, 3000);
-                }
             });
         });
     </script>
